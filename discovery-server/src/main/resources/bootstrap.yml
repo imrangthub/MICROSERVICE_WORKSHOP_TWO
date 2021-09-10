@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: discovery-eureka
+  cloud:
+    config:
+      uri: https://github.com/imrangthub/central-configuration-repo.git
+server:
+  port: 8761

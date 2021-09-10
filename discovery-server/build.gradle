@@ -9,10 +9,10 @@ plugins {
 group 'com.imranmadbar'
 version '1.0-SNAPSHOT'
 
+
 repositories {
     mavenCentral()
 }
-
 ext {
     set('springCloudVersion', "Greenwich.SR3")
 }
@@ -25,10 +25,17 @@ dependencyManagement {
 dependencies {
 
     implementation(
-            "org.springframework.boot:spring-boot-starter-web",
-            "org.springframework.boot:spring-boot-starter-webflux",
+            "javax.xml.bind:jaxb-api",
+            "org.glassfish.jaxb:jaxb-runtime",
+    )
+
+    implementation(
+            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+    )
+
+    implementation(
+            "org.springframework.cloud:spring-cloud-starter-config",
             "org.springframework.boot:spring-boot-starter-actuator",
-            "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
     )
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
