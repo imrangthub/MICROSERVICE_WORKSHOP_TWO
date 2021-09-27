@@ -7,11 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/ratingsdata")
 public class RatingController {
+
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+
+	@GetMapping("/list")
+	public List<RatingDto> list() {
+		LOG.info("Inside of  ratingsdata service");
+		List<RatingDto> ratingsList = Arrays.asList(
+				new RatingDto("MOV_11111", 11),
+				new RatingDto("MOV_22222", 22)
+		);
+		return ratingsList;
+	}
+
 
 	@GetMapping("/{movieId}")
 	public RatingDto getRating(@PathVariable("movieId") String movieId) {

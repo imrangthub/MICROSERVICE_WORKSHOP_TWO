@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/catalog")
@@ -22,6 +24,9 @@ public class MovieCatalogConteoller {
     @Autowired
     private RestTemplate restTemplate;
 
+    private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+
+
 
 //	@Autowired
 //	private MovieInfoService movieInfoService;
@@ -29,17 +34,28 @@ public class MovieCatalogConteoller {
 //	@Autowired
 //	private UserRatingInfoService userRatingInfoService;
 
+
+    @RequestMapping("/list")
+    public List<UserRatingDto> listOfRating() {
+        LOG.info("Start calling ratingsdata service");
+        List<UserRatingDto> userRatingList = null;
+        userRatingList = restTemplate.getForObject("http://ratings-data-service/ratingsdata/list",
+                List.class);
+        System.out.println("userRatingDtoRes:" + userRatingList);
+        LOG.info("Deone calling ratingsdata service");
+        return userRatingList;
+
+    }
+
     @RequestMapping("/list/{userId}")
-    @HystrixCommand(fallbackMethod = "getFallBackCatalog")
     public List<CatalogItemDto> getCatalog(@PathVariable("userId") String userId) {
         List<CatalogItemDto> catalogItemList = new ArrayList<CatalogItemDto>();
 
-        UserRatingDto userRating = getUserRating(userId);
+        List<UserRatingDto> userRatingLsist = getUserRating(userId);
 
-        for (RatingDto ratingObj : userRating.getUserRating()) {
-            MovieDto movie = getMovieDto(ratingObj);
-            catalogItemList.add(new CatalogItemDto(movie.getName(), "Description", ratingObj.getRating()));
-        }
+        MovieDto movie = getMovieDto();
+        catalogItemList.add(new CatalogItemDto(movie.getName(), "Description", movie.getRating()));
+
 
         System.out.println("catalogItemList Update:" + catalogItemList);
         return catalogItemList;
@@ -47,17 +63,17 @@ public class MovieCatalogConteoller {
     }
 
     @HystrixCommand(fallbackMethod = "getFallBackMovieDto")
-    public MovieDto getMovieDto(RatingDto ratingObj) {
-        return restTemplate.getForObject("http://movie-info-service/movies/" + ratingObj.getMovieId(), MovieDto.class);
+    public MovieDto getMovieDto() {
+        return restTemplate.getForObject("http://movie-info-service/movies/" +"1009", MovieDto.class);
     }
 
     @HystrixCommand(fallbackMethod = "getFallBackUserRating")
-    public UserRatingDto getUserRating(String userId) {
-        UserRatingDto userRatingDto = null;
-        userRatingDto = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users2/" + userId,
-                UserRatingDto.class);
-        System.out.println("userRating Update res: " + userRatingDto);
-        return userRatingDto;
+    public List<UserRatingDto> getUserRating(String userId) {
+        List<UserRatingDto> userRatingList = null;
+        userRatingList = restTemplate.getForObject("http://ratings-data-service/ratingsdata/list",
+                List.class);
+        System.out.println("userRating Update res: " + userRatingList);
+        return userRatingList;
     }
 
     // 1

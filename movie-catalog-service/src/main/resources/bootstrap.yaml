@@ -4,5 +4,10 @@ spring:
   cloud:
     config:
       uri: https://github.com/imrangthub/central-configuration-repo.git
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1
 server:
   port: 8081
