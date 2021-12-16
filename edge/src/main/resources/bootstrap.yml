@@ -1,0 +1,21 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: edge
+  cloud:
+    config:
+      uri: https://github.com/imrangthub/central-configuration-repo.git
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7082/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+zuul:
+  host:
+    maxTotalConnections: 3000
+    maxPerRouteConnections: 750
