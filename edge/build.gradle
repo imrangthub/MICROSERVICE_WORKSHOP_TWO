@@ -31,5 +31,7 @@ dependencies {
             "org.springframework.cloud:spring-cloud-starter-sleuth",
             "org.springframework.cloud:spring-cloud-starter-zipkin",
     )
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    implementation 'org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

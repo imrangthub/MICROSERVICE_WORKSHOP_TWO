@@ -19,3 +19,5 @@ zuul:
   host:
     maxTotalConnections: 3000
     maxPerRouteConnections: 750
+imranmadbar:
+  microservices: microservice-one,microservice-two
