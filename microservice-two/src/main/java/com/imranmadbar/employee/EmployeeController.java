@@ -1,5 +1,4 @@
-package com.imranmadbar;
-
+package com.imranmadbar.employee;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,8 @@ import org.springframework.web.client.RestTemplate;
 
 
 @RestController
-public class HomeController {
+@RequestMapping("/employee")
+public class EmployeeController {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -22,14 +22,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        System.out.println("Welcome to Microservice Service two !");
-        return "Welcome to Microservice Service Two !";
+        System.out.println("Welcome to Mic2 Employee !");
+        return "Welcome to Mic2 Employee !";
     }
 
     @GetMapping("/home")
     public String helloFromHome() {
-        System.out.println("Hello from Home !");
-        return "Hello from Home !";
+        System.out.println("Welcome to Mic2 Employee Home !");
+        return "Welcome to Mic2 Employee Home !";
     }
 
 }

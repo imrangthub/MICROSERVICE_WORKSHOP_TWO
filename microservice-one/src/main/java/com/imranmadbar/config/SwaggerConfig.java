@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(
                         new ApiInfoBuilder()
-                                .title("Swagger2 Application")
+                                .title("Microservice One Application")
                                 .description("A simple Spring boot applicaton")
                                 .contact(
                                         new Contact(
