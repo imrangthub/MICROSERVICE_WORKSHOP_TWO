@@ -8,16 +8,6 @@ spring:
       uri: https://github.com/imrangthub/central-configuration-repo.git
   security:
     oauth2:
-      client:
-        registration:
-          spring-boot-client-app:
-            client-id: spring-boot-client-app-cliendid
-            client-secret: 60543ec9-a4a3-4472-88c6-68c821020d7e
-            scope: openid, profile, roles
-            authorization-grant-type: client_credentials
-        provider:
-          spring-boot-client-app:
-            issuer-uri: http://localhost:8080/auth/realms/SpringBootRealm
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/auth/realms/SpringBootRealm

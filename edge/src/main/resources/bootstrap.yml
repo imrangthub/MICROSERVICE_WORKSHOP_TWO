@@ -6,6 +6,17 @@ spring:
   cloud:
     config:
       uri: https://github.com/imrangthub/central-configuration-repo.git
+  loadbalancer:
+    retry:
+      enabled: false
+    gateway:
+      #      default-filters:
+      #        - TokenRelay
+      #        - RemoveRequestHeader=Cookie
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
 eureka:
   client:
     serviceUrl:
