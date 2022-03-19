@@ -1,20 +1,22 @@
 server:
-  port: ${PORT:9090}
+  port: ${PORT:8888}
 spring:
   application:
     name: edge-service
+  config:
+    import: optional:configserver:http://localhost:9091/
   cloud:
     gateway:
-      routes:
-        - id: student-service
-          uri: http://localhost:8081/
-          predicates:
-            - Path=/student-service/**
-        - id: course-service
-          uri: http://localhost:8082/
-          predicates:
-            - Path=/course-service/**
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
 eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
       defaultZone: http://localhost:9092/eureka/

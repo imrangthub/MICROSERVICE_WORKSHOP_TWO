@@ -1,8 +1,10 @@
 server:
-  port: ${PORT:9092}
+  port: ${PORT:8888}
 spring:
   application:
     name: discovery-eureka
+  config:
+    import: optional:configserver:http://localhost:9091/
 eureka:
   instance:
     hostname: localhost

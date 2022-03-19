@@ -11,9 +11,9 @@
 //    @Bean
 //    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 //        return builder.routes()
-//                .route(r -> r.path("/student-service/**")
+//                .route(r -> r.path("/STUDENT-SERVICE/**")
 //                        .uri("http://localhost:8081/"))
-//                .route(r -> r.path("/course-service/**")
+//                .route(r -> r.path("/COURSE-SERVICE/**")
 //                        .uri("http://localhost:8082/"))
 //                .build();
 //    }
