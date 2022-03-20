@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.imranmadbar'
-version = '1.0.0.RELEASE'
+version = PROJECT_VERSION
 compileJava {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -36,11 +36,20 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }
 
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+springBoot {
+    buildInfo {
+        properties {
+            name = PROJECT_NAME
+            additional = [
+                    'dev'      : 'imranmadbar@gmail.com',
+            ]
+        }
+    }
 }
