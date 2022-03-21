@@ -48,7 +48,7 @@ springBoot {
         properties {
             name = PROJECT_NAME
             additional = [
-                    'dev'      : 'imranmadbar@gmail.com',
+                    'dev': 'imranmadbar@gmail.com',
             ]
         }
     }
