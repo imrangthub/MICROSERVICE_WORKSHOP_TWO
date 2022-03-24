@@ -2,4 +2,8 @@ spring:
   application:
     name: student-service
   config:
-    import: optional:configserver:http://localhost:9091/
+    import: ${CONFIG_SERVER:configserver:http://localhost:9091}
+
+  #cloud:
+  #  bootstrap:
+   #   enabled: true

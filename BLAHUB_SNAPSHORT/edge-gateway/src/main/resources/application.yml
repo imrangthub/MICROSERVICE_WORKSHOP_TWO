@@ -1,12 +1,12 @@
 server:
-  port: ${PORT:9099}
-bs23:
-  microservices: config-service,edge-gateway,edge-service,edge,guardian,discovery-eureka
+  port: ${PORT:9090}
+dmz:
+  microservices: config-service,edge-gateway,edge-service,guardian,discovery-eureka
 spring:
   application:
     name: edge-gateway
   config:
-    import: optional:configserver:http://localhost:9091/
+    import: ${CONFIG_SERVER:configserver:http://localhost:9091}
 logging:
   level:
     org:
