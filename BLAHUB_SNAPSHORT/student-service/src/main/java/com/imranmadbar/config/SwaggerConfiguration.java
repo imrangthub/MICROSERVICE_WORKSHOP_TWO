@@ -25,10 +25,10 @@ public class SwaggerConfiguration {
 
     @Bean
     public Docket api() {
-        Docket var10000 = new Docket(DocumentationType.SWAGGER_2);
-        String var10001 = this.buildProperties.getName();
-        return var10000
-                .groupName(var10001 + " " + this.buildProperties.getVersion())
+        Docket docket = new Docket(DocumentationType.SWAGGER_2);
+        String buildProStr = this.buildProperties.getName();
+        return docket
+                .groupName(buildProStr + " " + this.buildProperties.getVersion())
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
