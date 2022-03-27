@@ -1,4 +1,9 @@
-FROM openjdk:8-jdk-alpine
-MAINTAINER imranmadbar@gmail.com
-COPY target/arif-travel-agency-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:11
+
+RUN mkdir -p /myApp
+
+ADD build/libs/config-server-1.0.0.RELEASE.jar /myApp/app.jar
+
+ENV port=8888
+
+CMD java -jar /myApp/app.jar
