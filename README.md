@@ -6,8 +6,7 @@
 
 
 
-
-BLAHUB_SNAPSHORT
+BahsSnapshort Docker:
 
 
 		=>docker network create app-net
