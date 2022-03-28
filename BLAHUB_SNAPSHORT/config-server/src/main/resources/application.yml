@@ -3,18 +3,11 @@ server:
 spring:
   application:
     name: config-service
-  profiles:
-    active: native
   cloud:
     config:
-#      server:
-#        allowOverride: true
-#        native:
-#          searchLocations: file:///C:/Z_MY_COMPUTER/1MD_IMRAN_HOSSAIN\PROJECT/MY_PROD/MICROSERVICE_WORKSHOP_TWO/BLAHUB_SNAPSHORT/central-configuration-local
       server:
         git:
           uri: https://github.com/imrangthub/central-configuration-repo.git
-
 eureka:
   instance:
     hostname: localhost
