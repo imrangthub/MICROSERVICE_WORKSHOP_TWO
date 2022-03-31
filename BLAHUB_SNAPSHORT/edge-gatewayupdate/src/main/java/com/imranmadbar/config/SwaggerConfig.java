@@ -50,7 +50,7 @@ public class SwaggerConfig {
         services.removeAll(excludeMicroservices);
 
         String regex = "^(.*?(\\beureka-\\b)[^$]*)$";
-        System.out.println("Services: "+services);
+
         services.stream()
                 .filter(x -> !x.matches(regex))
                 .forEach(x -> {
@@ -84,7 +84,7 @@ public class SwaggerConfig {
                         logger.info("---------------SwaggerResource Call End -----------------");
 
                         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                            System.out.println("SwaggerResourceList: "+response.getBody());
+
                             resources.addAll(
                                     response.getBody().stream()
                                             .peek(
