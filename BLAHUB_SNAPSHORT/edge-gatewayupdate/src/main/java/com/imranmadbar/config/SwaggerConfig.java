@@ -1,10 +1,5 @@
 package com.imranmadbar.config;
 
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
@@ -20,6 +15,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
+
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -50,7 +50,7 @@ public class SwaggerConfig {
         services.removeAll(excludeMicroservices);
 
         String regex = "^(.*?(\\beureka-\\b)[^$]*)$";
-
+        System.out.println("Services: "+services);
         services.stream()
                 .filter(x -> !x.matches(regex))
                 .forEach(x -> {
@@ -84,7 +84,7 @@ public class SwaggerConfig {
                         logger.info("---------------SwaggerResource Call End -----------------");
 
                         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-
+                            System.out.println("SwaggerResourceList: "+response.getBody());
                             resources.addAll(
                                     response.getBody().stream()
                                             .peek(
